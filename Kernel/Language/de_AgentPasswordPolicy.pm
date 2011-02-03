@@ -24,7 +24,7 @@ sub Data {
     $Self->{Translation}->{'Password history is active, you can\'t use a password which was used the last %s times.'} = 'Passwort-Historie ist aktiv, Sie können die letzten %s Passwörter nicht benutzen.';
     $Self->{Translation}->{'Password size is min. %s character.'} = 'Passwort benötigt eine minimale Länge von %s Zeichen.';
     $Self->{Translation}->{'Password required min. 2 lower and 2 upper character.'} = 'Passwort benötigt min. 2 Klein- und 2 Großbuchstaben.';
-    $Self->{Translation}->{'Password required min. 2 character (no digits).'} = 'Passwort benötigt min. 2 Buchstaben (keine Zahlen).';
+    $Self->{Translation}->{'Password required min. 2 character.'} = 'Passwort benötigt min. 2 Buchstaben (keine Zahlen).';
     $Self->{Translation}->{'Password required min. 1 digit.'} = 'Passwort benötigt min. 1 Zahl.';
     $Self->{Translation}->{'Change Config Options'} = 'Ändern der Konfigurations-Einstellungen';
     $Self->{Translation}->{'Admin Permissions are required!'} = 'Admin-Berechtigung nötig!';
