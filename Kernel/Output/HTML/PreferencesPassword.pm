@@ -155,8 +155,8 @@ sub Run {
         String => $Pw,
     );
     my %HistoryHash;
-    if ( $Self->{ConfigItem}->{PasswordHistory} ) {
-        my $HistoryCount = 10;
+    my $HistoryCount = $Self->{ConfigItem}->{PasswordHistory};
+    if ($HistoryCount) {
         for my $Count ( '', 1 .. $HistoryCount ) {
             my $Key = 'UserLastPw' . $Count;
             next if !$Param{UserData}->{$Key};
@@ -186,6 +186,11 @@ sub Run {
         Key    => 'UserLastPwChangeTime',
         Value  => $Self->{TimeObject}->SystemTime(),
     );
+    $Self->{SessionObject}->UpdateSessionID(
+        SessionID => $Self->{SessionID},
+        Key    => 'UserLastPwChangeTime',
+        Value  => $Self->{TimeObject}->SystemTime(),
+    );
 
     # set password history
     $Self->{UserObject}->SetPreferences(
@@ -194,13 +199,15 @@ sub Run {
         Value  => $MD5Pw,
     );
     my $Count = 0;
-    for my $Key ( sort %HistoryHash ) {
+    for my $CountReal ( '', 1 .. $HistoryCount ) {
+        my $KeyReal = 'UserLastPw' . $CountReal;
+        next if !$HistoryHash{$KeyReal};
         $Count++;
         my $KeyCount = 'UserLastPw' . $Count;
         $Self->{UserObject}->SetPreferences(
             UserID => $Param{UserData}->{UserID},
             Key    => $KeyCount,
-            Value  => $HistoryHash{$Key},
+            Value  => $HistoryHash{$KeyReal},
         );
     }
 
@@ -214,13 +221,15 @@ sub Run {
             Value     => $MD5Pw,
         );
         $Count = 0;
-        for my $Key ( sort %HistoryHash ) {
+        for my $CountReal ( '', 1 .. $HistoryCount ) {
+            my $KeyReal = 'UserLastPw' . $CountReal;
+            next if !$HistoryHash{$KeyReal};
             $Count++;
             my $KeyCount = 'UserLastPw' . $Count;
             $Self->{SessionObject}->UpdateSessionID(
                 SessionID => $Self->{SessionID},
                 Key       => $KeyCount,
-                Value     => $HistoryHash{$Key},
+                Value     => $HistoryHash{$KeyReal},
             );
         }
     }

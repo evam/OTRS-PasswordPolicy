@@ -63,7 +63,7 @@ sub PreRun {
     my $PasswordMaxValidTill = $Self->{TimeObject}->SystemTime() - $PasswordMaxValidTimeInDays;
 
     # ignore pre application module if it is calling self
-    return if $Self->{Action} eq 'AgentPassword';
+    return if $Self->{Action} =~ /^(AgentPassword|AdminPackage|AdminSysConfig)/;
 
     # if last change time is over x days
     if ( !$Self->{UserLastPwChangeTime} || $Self->{UserLastPwChangeTime} < $PasswordMaxValidTill ) {
