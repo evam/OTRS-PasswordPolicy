@@ -26,7 +26,8 @@ sub Data {
     $Self->{Translation}->{'Password required min. 2 lower and 2 upper character.'} = 'Passwort benötigt min. 2 Klein- und 2 Großbuchstaben.';
     $Self->{Translation}->{'Password required min. 2 upper character.'} = 'Passwort benötigt min. 2 Großbuchstaben.';
     $Self->{Translation}->{'Password required min. 1 digit.'} = 'Passwort benötigt min. 1 Zahl.';
-    $Self->{Translation}->{''} = '';
+    $Self->{Translation}->{'Change Config Options'} = 'Ändern der Konfigurations-Einstellungen';
+    $Self->{Translation}->{'Admin Permissions are required!'} = 'Admin-Berechtigung nötig!';
 }
 
 1;

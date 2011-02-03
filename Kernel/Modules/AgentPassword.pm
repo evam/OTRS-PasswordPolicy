@@ -171,10 +171,19 @@ sub _Screen {
         );
     }
 
+    # show sysconfig settings link if admin
+    if ($Self->{'UserIsGroup[admin]'}) {
+        $Self->{LayoutObject}->Block(
+            Name => 'AdminConfig',
+            Data => { %Param, %{ $Config->{Password} } },
+        );
+    }
+
     $Output .= $Self->{LayoutObject}->Output(
         TemplateFile => 'AgentPassword',
         Data => { %Param, %{ $Config->{Password} } },
     );
+
     $Output .= $Self->{LayoutObject}->Footer();
     return $Output;
 }
